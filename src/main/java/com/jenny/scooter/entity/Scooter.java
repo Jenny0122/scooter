@@ -1,43 +1,32 @@
 package com.jenny.scooter.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@Schema( description = "스쿠터 정보 필드" )
-@Entity( name = "scooter" )
-public class Scooter {
+@Entity(name = "scooter")
+public class Scooter extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int no;
+    private Long id;
 
-    @Column
-    private String model_number;
+    @Column(name="model_number")
+    private String modelNumber;
 
-    @Column
-    private String serial_number;
+    @Column(name="serial_number")
+    private String serialNumber;
 
     @Column
     private String name;
 
-    @Column
-    private int status_value;
-
-    @Column
-    private LocalDateTime createDt;
-
-    @Column
-    private LocalDateTime updateDt;
-
+    @ManyToOne
+    @JoinColumn(name = "status_no")
+    private ScooterStatus statusNo;
 }

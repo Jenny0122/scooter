@@ -1,39 +1,39 @@
 package com.jenny.scooter.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.jenny.scooter.converter.PasswordConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Getter
-@Setter
 @ToString
-@EqualsAndHashCode
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@Schema( description = "스쿠터 정보 필드" )
 @Entity( name = "user" )
-public class User {
+public class User extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int no;
+    private Long id;
 
     @Column
-    private String name;
+    private String fullname;
 
     @Column
-    private String id;
+    private String username;
 
+    @Convert(converter = PasswordConverter.class)
     @Column
     private String password;
 
     @Column
-    private LocalDateTime createDt;
+    private String address;
 
     @Column
-    private LocalDateTime updateDt;
+    private Long age;
+
+    @Column
+    private String jumin;
+
 }

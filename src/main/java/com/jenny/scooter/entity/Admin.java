@@ -1,5 +1,6 @@
 package com.jenny.scooter.entity;
 
+import com.jenny.scooter.converter.PasswordConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,8 +10,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity( name = "scooter_status" )
-public class ScooterStatus extends BaseEntity {
+@Entity( name = "admin" )
+public class Admin extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +19,13 @@ public class ScooterStatus extends BaseEntity {
     private Long id;
 
     @Column
-    private String status;
+    private String username;
 
     @Column
-    private String description;
+    private String fullname;
 
+    @Convert(converter = PasswordConverter.class)
+    @Column
+    private String password;
 }
+
